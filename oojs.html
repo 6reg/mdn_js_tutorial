@@ -1,85 +1,90 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Object-oriented JavaScript example</title>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>Object-oriented JavaScript example</title>
-</head>
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+    <section></section>
+  </body>
 
-<body>
-  <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+    <script>
+      // object literal, 'person' is it's namespace 
+      const person = {
+        // next four members are data items = object's properties
+        // "name" is subnamespace 
+        name: {
+          first: 'bob',
+          last: 'smith'
+        },
+        age: 32,
+        gender: 'male',
+        interests: ['music', 'skiiing'],
+        // these two are object's methods, they do something with the properties 
+        bio: function() {
+          // the 'this' keyword refers to the current object the code is in. So in this case 'this' == the 'person' object 
+          alert(this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' +  this.interests[0] + ' and ' + this.interests[1] + '.')
+        },
+        greeting: function() {
+          alert('Hi! I\'m ' + this.name[0] + '.');
+        },
+      }
 
-</body>
+      let myDataName = 'height';
+      let myDataValue = '1.75m';
+      person[myDataName] = myDataValue;
 
-<script>
-function Person(first, last, age, gender, interests) {
-  this.name = {
-     first : first,
-     last : last
-  };
-  this.age = age;
-  this.gender = gender;
-  this.interests = interests;
-  this.bio = function() {
-    alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
-  };
-  this.greeting = function() {
-    alert('Hi! I\'m ' + this.name.first + '.');
-  };
-}
+      let weight = 224;
+      let weightName = "weight";
+      person[weightName] = weight;
 
-let person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+      const section = document.querySelector('section')
 
-var x = 10
-function createFunction1() {
-  var x = 20;
-  return new Function('return x;'); // this |x| refers global |x|
-}
+let bandInfo;
 
-function  createFunction2() {
-  var x = 20; 
-  function f() {
-    return x; // this |x| refers local |x| above
+// Put your code here
+
+const band = {
+name: 'joni',
+nationality: 'Canada',
+genre: 'folk',
+memmbers: {
+  guitar: 'joni',
+  bass: 'jaco'
+},
+formed: '1966',
+split: '1985',
+albums: [
+  album1 = {
+    name: 'hissing', 
+    released: 1968,
+  }, 
+  album2 = {
+    name: 'blue',
+    released: 1969,
   }
-  return f;
+],
+active: {
+  activity: function() {
+  if (band.split === false) { 
+  return "They're still active"; 
+  } else {  
+  return "They split in " + band.split + ". They were active for " + (band.split - band.formed) + " years.";
+}
+}
+},
 }
 
-var f1 = createFunction1();
-console.log(f1()); // 10
-var f2 = createFunction2();
-console.log(f2()); // 20
+bandInfo = `The band ${band.name} from ${band.nationality} formed in ${band.formed}. ${band.active.activity()} ${band.name} was a ${band.genre} band. Their first album, "${band.albums[0].name}" was released in ${band.albums[0].released}.`
+// Don't edit the code below here
 
-function myFunc(theObject) {
-  theObject.brand = "Toyota";
-}
-
-/*
- * Declare variable 'mycar';
- * create and initialize a new Object;
- * assign reference to it to 'mycar'
- */ 
-
- var mycar = {
-   brand: "Honda",
-   model: "Accord",
-   year: 1998
- };
-
- /* Logs 'Honda' */
- console.log(mycar.brand);
-
- /* Pass object reference to the function */
- myFunc(mycar);
-
- /*
-  * Logs 'Toyota' as the value of the 'brand' property
-  * of the object, as changed to by the function.
-  */
- console.log(mycar.brand)
- 
+let para1 = document.createElement('p');
+para1.textContent = bandInfo;
+section.appendChild(para1);
+    
 
 
-
-</script>
-
+    </script>
 </html>
